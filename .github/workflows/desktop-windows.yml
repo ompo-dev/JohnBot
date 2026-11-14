@@ -43,6 +43,7 @@ jobs:
             throw "Built binary not found at $builtExe"
           }
           Copy-Item -Path $builtExe -Destination "dist-artifacts/johnbot.exe"
+          Copy-Item -Path "src-tauri/runtime" -Destination "dist-artifacts/runtime" -Recurse
 
           $installer = Get-ChildItem -Path "src-tauri/target/release/bundle/nsis/*.exe" | Select-Object -First 1
           if (-not $installer) {
@@ -71,4 +72,5 @@ jobs:
             dist-artifacts/*.exe
             dist-artifacts/*.zip
             dist-artifacts/SHA256SUMS.txt
+            dist-artifacts/runtime
           retention-days: 7

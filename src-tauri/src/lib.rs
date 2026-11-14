@@ -123,7 +123,18 @@ async fn start_local_backend(window: WebviewWindow, app: AppHandle) -> Result<St
             if dev_path.exists() {
                 compose_path = dev_path;
             } else {
-                return Err("Arquivo compose.yaml nao encontrado no bundle ou projeto.".into());
+                const EMBEDDED_COMPOSE: &str = include_str!("../runtime/compose.yaml");
+                let fallback_dir = std::env::temp_dir().join("johnbot-runtime");
+                if std::fs::create_dir_all(&fallback_dir).is_ok() {
+                    let fallback_file = fallback_dir.join("compose.yaml");
+                    if std::fs::write(&fallback_file, EMBEDDED_COMPOSE).is_ok() {
+                        compose_path = fallback_file;
+                    } else {
+                        return Err("Arquivo compose.yaml nao encontrado no bundle ou projeto.".into());
+                    }
+                } else {
+                    return Err("Arquivo compose.yaml nao encontrado no bundle ou projeto.".into());
+                }
             }
         }
 
