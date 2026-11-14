@@ -1,0 +1,10 @@
+import assert from "node:assert/strict";
+import { appInstalled, type MarketplaceApp } from "../../src/features/marketplace/marketplace-model";
+const base = { id: "whatsapp", name: "WhatsApp", tagline: "Mensagens", category: "communication", kind: "connector", connector: "whatsapp" };
+assert.equal(appInstalled({ ...base, status: "idle" } as MarketplaceApp), false);
+assert.equal(appInstalled({ ...base, status: "connected" } as MarketplaceApp), true);
+assert.equal(appInstalled({ ...base, status: "attention" } as MarketplaceApp), true);
+assert.equal(appInstalled({ kind: "plugin", connections: { app: { held: false } } } as unknown as MarketplaceApp), false);
+assert.equal(appInstalled({ kind: "plugin", connections: { app: { held: true, signInNeeded: true } } } as unknown as MarketplaceApp), true);
+assert.equal(appInstalled({ kind: "custom" } as MarketplaceApp), true);
+console.log("PASS Marketplace installed: saved apps, attention states and custom MCPs; catalog-only apps excluded");

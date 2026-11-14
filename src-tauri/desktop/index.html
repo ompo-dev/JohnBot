@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JohnBot</title>
+  <style>
+    :root {
+      --bg: #0f1412;
+      --card: #151d18;
+      --border: #233328;
+      --text: #e1e7e3;
+      --muted: #8b9b90;
+      --primary: #367c2b;
+      --primary-hover: #2c6623;
+      --accent: #ffde00;
+      --error: #d9534f;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      max-width: 440px;
+      width: 100%;
+      padding: 32px;
+      text-align: center;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(54, 124, 43, 0.15);
+      color: var(--accent);
+      border: 1px solid rgba(255, 222, 0, 0.25);
+      border-radius: 999px;
+      padding: 4px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+    .spinner {
+      width: 36px;
+      height: 36px;
+      border: 3px solid rgba(255,255,255,0.1);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+      margin: 0 auto 20px auto;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .error-box {
+      display: none;
+      background: rgba(217, 83, 79, 0.12);
+      border: 1px solid var(--error);
+      color: #ff9d9b;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      text-align: left;
+      margin-bottom: 20px;
+      word-break: break-word;
+    }
+    button {
+      display: none;
+      width: 100%;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background: var(--primary-hover);
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="badge">JohnBot Launcher</div>
+    <h1 id="title">Iniciando JohnBot</h1>
+    <p id="status-text">Conectando ao ambiente local e subindo serviços...</p>
+    <div class="spinner" id="spinner"></div>
+    <div class="error-box" id="error-box"></div>
+    <button id="retry-btn" onclick="connect()">Tentar Novamente</button>
+  </div>
+
+  <script>
+    async function connect() {
+      const spinner = document.getElementById('spinner');
+      const errorBox = document.getElementById('error-box');
+      const retryBtn = document.getElementById('retry-btn');
+      const statusText = document.getElementById('status-text');
+      const title = document.getElementById('title');
+
+      spinner.style.display = 'block';
+      errorBox.style.display = 'none';
+      retryBtn.style.display = 'none';
+      statusText.innerText = 'Verificando servico e inicializando conteineres...';
+      title.innerText = 'Iniciando JohnBot';
+
+      try {
+        if (!window.__TAURI__ || !window.__TAURI__.core || !window.__TAURI__.core.invoke) {
+          throw new Error('Interface de comunicacao nativa Tauri nao detectada.');
+        }
+
+        const targetUrl = await window.__TAURI__.core.invoke('start_local_backend');
+        if (typeof targetUrl === 'string' && targetUrl.startsWith('http://localhost:3000')) {
+          window.location.replace(targetUrl);
+        } else {
+          throw new Error('URL de destino invalida recebida do launcher.');
+        }
+      } catch (err) {
+        spinner.style.display = 'none';
+        title.innerText = 'Falha na Inicializacao';
+        statusText.innerText = 'Nao foi possivel iniciar o backend do JohnBot.';
+        errorBox.innerText = String(err && err.message ? err.message : err);
+        errorBox.style.display = 'block';
+        retryBtn.style.display = 'block';
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', connect);
+  </script>
+</body>
+</html>

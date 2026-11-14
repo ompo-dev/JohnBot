@@ -1,0 +1,41 @@
+root = Stack([headerStack, metricsGrid, mainTabs], "vertical", "l")
+
+qualityQuery = Query("dashboardData", {source: "quality"}, [{source: "machine-downtime.csv", records: 2500, rejected: 0, duplicates: 0, failures: 1265}])
+machinesQuery = Query("dashboardData", {source: "machines"}, [{group: "Makino-L1-Unit1-2013", records: 874, failures: 454, failure_rate: 0.5195}, {group: "Makino-L3-Unit1-2015", records: 818, failures: 415, failure_rate: 0.5073}, {group: "Makino-L2-Unit1-2015", records: 808, failures: 396, failure_rate: 0.4901}])
+actionsQuery = Query("dashboardData", {source: "actions"}, [])
+routinesQuery = Query("dashboardData", {source: "routines"}, [])
+agentsQuery = Query("dashboardData", {source: "agents"}, [])
+notebooksQuery = Query("dashboardData", {source: "notebooks"}, [])
+personQuery = Query("dashboardData", {source: "person"}, [{id: "p-marina", name: "Marina Costa", goals: ["Diretora de operações. Responde pelos três turnos."]}])
+
+headerStack = Row([headerInfo, headerActions], "m", "center", "between")
+headerInfo = Stack([Heading("Painel Operacional JohnBot", 2), Text("Visão Executiva: Qualidade dos Dados, Frequência de Falhas e Governança de Turnos", "muted", "sm")], "vertical", "xs")
+headerActions = Row([Badge("Operação Ativa", "success"), Button("Atualizar Dados", @Refresh(), "outline")], "s", "center")
+
+metricsGrid = Grid([metricRecords, metricFailures, metricRejected, metricDuplicates], 4, "m")
+metricRecords = Metric("Registros Auditados", @First(qualityQuery).records, "Dataset verificado", "neutral")
+metricFailures = Metric("Ocorrências de Falhas", @First(qualityQuery).failures, "Taxa geral ~50.6%", "negative")
+metricRejected = Metric("Registros Rejeitados", @First(qualityQuery).rejected, "Integridade 100%", "positive")
+metricDuplicates = Metric("Duplicidades", @First(qualityQuery).duplicates, "Sem redundância", "positive")
+
+mainTabs = Tabs([{id: "visao-geral", label: "Frequência por Máquina", content: machinesTab}, {id: "acoes-rotinas", label: "Ações e Rotinas", content: routinesTab}, {id: "agentes-notas", label: "Agentes e Registros", content: agentsTab}])
+
+machinesTab = Stack([qualityAlert, machinesGrid], "vertical", "m")
+qualityAlert = Alert("Análise baseada no dataset machine-downtime.csv (2.500 registros, 0 duplicados ou rejeitados). Os índices refletem a frequência de falhas observada em cada equipamento Makino.", "Auditoria de Dados de Confiabilidade", "info")
+machinesGrid = Grid([chartCard, tableCard], 2, "m")
+chartCard = Card("Frequência de Falhas por Unidade", "Proporção de registros com falha registrada", [BarChart(machinesQuery, "group", "failure_rate")])
+tableCard = Card("Detalhamento por Equipamento", "Registros e total absoluto de falhas", [Table(machinesQuery, [{key: "group", header: "Equipamento"}, {key: "records", header: "Total de Registros"}, {key: "failures", header: "Total de Falhas"}, {key: "failure_rate", header: "Taxa Observada"}])])
+
+routinesTab = Grid([actionsCard, routinesCard], 2, "m")
+actionsCard = Card("Plano de Ações Operacionais", "Ações prioritárias para mitigação de paradas", [actionsList])
+actionsList = @Count(actionsQuery) > 0 ? Table(actionsQuery, [{key: "title", header: "Ação"}, {key: "ownerId", header: "Responsável"}, {key: "status", header: "Status"}, {key: "dueAt", header: "Prazo"}]) : Text("Nenhuma ação pendente no momento.", "muted", "sm")
+
+routinesCard = Card("Rotinas de Monitoramento e Manutenção", "Automações de inspeção nos três turnos", [routinesList])
+routinesList = Stack(@Each(routinesQuery, "r", RoutineCard(r.id, r.title, r.lastRun.status, r.steps, r.lastRun.at, @RunRoutine(r.id))), "vertical", "s")
+
+agentsTab = Grid([agentsCard, notebooksCard], 2, "m")
+agentsCard = Card("Agentes Operacionais Alocados", "Sistemas de suporte autônomo à operação", [agentsList])
+agentsList = Stack(@Each(agentsQuery, "a", AgentCard(a.id, a.name, a.title, "Ativo", a.model, @OpenAgent(a.id))), "vertical", "s")
+
+notebooksCard = Card("Registros Internos de Execução", "Sumários autorizados de registros de agentes", [notebooksList])
+notebooksList = Stack(@Each(notebooksQuery, "n", NotebookCard(n.id, n.title, n.ownerKind, n.ownerId)), "vertical", "s")

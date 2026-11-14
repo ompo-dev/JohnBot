@@ -1,0 +1,153 @@
+/*
+ * The light palette of the desktop app and the web client. tokens.css declares every
+ * token, dark; this file changes only the colors that must change, when the root element
+ * has data-johnbot-color-scheme="light". Each desktop window and the web client set that
+ * attribute from the saved choice, and resolve System from prefers-color-scheme. The public
+ * site never sets it, so it stays dark.
+ *
+ * The rules of the dark palette stay true here, turned over: a raised surface is lighter
+ * than the canvas, and a hover or a border is a translucent ink. In the dark palette that
+ * ink is white; here it is the primary text color, #141414.
+ *
+ * Not here, on purpose:
+ * - The native-only tokens (bg-native-canvas, chrome-*): mobile has its own light theme in
+ *   tokens-native.css. The desktop uses the native sidebar, sheet and grouped tokens, so they are here.
+ * - The landing-page materials (price-*, hero-grid, download-card-*): the public site is dark only.
+ * - The paper-* tokens: they stay on paper that is always light, such as a QR code.
+ * - Illustration and brand colors (logo-*, onboarding-*, sound-*, provider logos): a drawing
+ *   keeps its colors in both themes.
+ * - The Dynamic Island: it imitates the camera housing, so its window never sets the attribute.
+ */
+
+:root[data-johnbot-color-scheme="light"] {
+  color-scheme: light;
+
+  --johnbot-bg-canvas: #f5f5f6;
+  --johnbot-bg-canvas-clear: rgba(245, 245, 246, 0);
+  --johnbot-bg-frame: #e8e8eb;
+  --johnbot-bg-sidebar: #f5f5f6;
+  --johnbot-bg-native-sidebar: #f5f5f6;
+  --johnbot-bg-sheet: #ffffff;
+  --johnbot-bg-sheet-inset: #f0f0f2;
+  --johnbot-bg-grouped: #ffffff;
+  --johnbot-text-grouped-secondary: #6b6b70;
+  --johnbot-border-grouped: #e3e3e6;
+  --johnbot-marketplace-detail-bg: #ececee;
+  --johnbot-bg-surface: #ffffff;
+  --johnbot-bg-surface-raised: #fcfcfc;
+  --johnbot-bg-control: #ffffff;
+  --johnbot-bg-control-hover: #f0f0f2;
+  --johnbot-bg-control-active: #e8e8eb;
+  --johnbot-tabs-bar-bg: #ececee;
+  --johnbot-tabs-pill-bg: #ffffff;
+  --johnbot-bg-overlay: rgba(245, 245, 246, 0.92);
+  --johnbot-dialog-overlay: rgba(20, 20, 20, 0.12);
+  --johnbot-dialog-ring: rgba(20, 20, 20, 0.1);
+  --johnbot-bg-glass: rgba(255, 255, 255, 0.76);
+  --johnbot-glass-surface: rgba(20, 20, 20, 0.04);
+  --johnbot-glass-surface-hover: rgba(20, 20, 20, 0.07);
+  --johnbot-glass-border: rgba(20, 20, 20, 0.12);
+  --johnbot-glass-highlight: rgba(255, 255, 255, 0.6);
+  --johnbot-glass-shadow: transparent;
+  --johnbot-scroll-edge-overlay: rgba(245, 245, 246, 0.72);
+
+  --johnbot-border: rgba(20, 20, 20, 0.07);
+  --johnbot-border-strong: rgba(20, 20, 20, 0.1);
+  --johnbot-image-outline: rgba(20, 20, 20, 0.1);
+  --johnbot-hover: rgba(20, 20, 20, 0.05);
+
+  /* Contrast on the canvas: primary 17:1, secondary 10:1, muted 4.9:1. Dim is for
+     marks and disabled text, as in the dark palette. */
+  --johnbot-text-primary: #141414;
+  --johnbot-text-secondary: #3a3a3c;
+  --johnbot-text-muted: #6b6b70;
+  --johnbot-text-dim: #8e8e93;
+  --johnbot-text-placeholder: #5c5c61;
+  --johnbot-text-readable: rgba(20, 20, 20, 0.6);
+  --johnbot-settings-text-muted: rgba(20, 20, 20, 0.6);
+
+  /* The on-light family is the high-contrast inverted element: the default button, a checked
+     switch, the user's bubble, the light tooltip. On a light canvas it turns dark. */
+  --johnbot-surface-light: #1c1c1e;
+  --johnbot-text-on-light: #ffffff;
+  --johnbot-text-muted-on-light: rgba(255, 255, 255, 0.64);
+  --johnbot-text-dim-on-light: rgba(255, 255, 255, 0.4);
+  --johnbot-border-on-light: rgba(255, 255, 255, 0.16);
+
+  /* The same hue 210 as the dark accent. The fill keeps its value, so a button looks the same
+     in both themes; text and hover go darker for contrast (accent-text 5.3:1 on the canvas). */
+  --johnbot-accent-hover: #006ad4;
+  --johnbot-accent-text: #0064c8;
+  --johnbot-accent-soft: rgba(0, 124, 247, 0.12);
+  --johnbot-accent-strong: rgba(0, 124, 247, 0.26);
+
+  /* Chart series: darker steps of the dark-palette hues, so each series reads on white.
+     Not yet checked with the dataviz palette validator in light mode. */
+  --johnbot-chart-series-codex: #8e4fc0;
+  --johnbot-chart-series-grok: #16849b;
+  --johnbot-chart-storage-workspaces: #2f74c9;
+  --johnbot-chart-storage-files: #c64d1d;
+  --johnbot-chart-storage-chats: #148a61;
+  --johnbot-chart-storage-downloads: #6f62d6;
+  --johnbot-chart-storage-runtimes: #a86f00;
+
+  /* Status fills keep their hue. Status text is darker, for AA on white. */
+  --johnbot-success: #1fa85a;
+  --johnbot-success-text: #187a41;
+  --johnbot-success-soft: rgba(31, 168, 90, 0.12);
+  --johnbot-success-wash: rgba(31, 168, 90, 0.06);
+  --johnbot-warning: #f08a00;
+  --johnbot-warning-text: #9c5200;
+  --johnbot-warning-soft: rgba(240, 138, 0, 0.14);
+  --johnbot-approval-badge-soft: rgba(240, 138, 0, 0.18);
+  --johnbot-danger: #e8222d;
+  --johnbot-danger-hover: #f04a53;
+  --johnbot-danger-text: #c0141d;
+  --johnbot-danger-soft: rgba(232, 34, 45, 0.12);
+  --johnbot-danger-soft-hover: rgba(232, 34, 45, 0.2);
+  --johnbot-danger-focus: rgba(232, 34, 45, 0.36);
+  --johnbot-danger-border: rgba(232, 34, 45, 0.45);
+
+  --johnbot-question-option: #16849b;
+  --johnbot-question-option-soft: rgba(22, 132, 155, 0.12);
+  --johnbot-question-option-hover: rgba(22, 132, 155, 0.18);
+  --johnbot-question-option-pressed: rgba(22, 132, 155, 0.24);
+  --johnbot-question-badge-text: #0f6a7d;
+  --johnbot-question-badge-soft: rgba(22, 132, 155, 0.14);
+  --johnbot-message-badge-text: #0a5fb8;
+  --johnbot-message-badge-soft: rgba(0, 124, 247, 0.12);
+  --johnbot-badge-new: #e0004a;
+  --johnbot-badge-new-soft: rgba(224, 0, 74, 0.12);
+
+  /* File references: the hues of the dark palette, darker so the name reads on white. */
+  --johnbot-file-blue: #1a66c4;
+  --johnbot-file-blue-soft: rgba(31, 111, 209, 0.12);
+  --johnbot-file-yellow: #9c5200;
+  --johnbot-file-yellow-soft: rgba(240, 138, 0, 0.14);
+  --johnbot-file-orange: #a8521a;
+  --johnbot-file-orange-soft: rgba(181, 90, 31, 0.12);
+  --johnbot-file-teal: #127589;
+  --johnbot-file-teal-soft: rgba(22, 132, 155, 0.12);
+  --johnbot-file-green: #187a41;
+  --johnbot-file-green-soft: rgba(31, 168, 90, 0.12);
+  --johnbot-file-red: #c0141d;
+  --johnbot-file-red-soft: rgba(232, 34, 45, 0.12);
+  --johnbot-file-pink: #a3478f;
+  --johnbot-file-pink-soft: rgba(163, 71, 143, 0.12);
+  --johnbot-file-default: #0064c8;
+  --johnbot-file-default-soft: rgba(0, 124, 247, 0.12);
+
+  --johnbot-data-table-border: #e3e3e6;
+  --johnbot-data-table-header-text: #6b6b70;
+  --johnbot-data-table-text: #1c1c1e;
+  --johnbot-data-table-outer-border: rgba(20, 20, 20, 0);
+  --johnbot-data-table-ring: rgba(20, 20, 20, 0.1);
+
+  /* No drop shadows: on the dark canvas they do not show, but on white they read as a halo.
+     A raised surface keeps its 1px ring. */
+  --johnbot-shadow-popover-ambient: transparent;
+  --johnbot-shadow-dialog: transparent;
+  --johnbot-shadow-menu: transparent;
+  --johnbot-shadow-ring: rgba(20, 20, 20, 0.04);
+  --johnbot-shadow-overlay: 0 0 0 transparent;
+}

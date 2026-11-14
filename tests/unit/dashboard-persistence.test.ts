@@ -1,0 +1,38 @@
+import assert from "node:assert/strict";
+import { operationsSchema, type Dashboard, type OperationsChange } from "../../src/contracts/operations";
+import { applyOperationsChange } from "../../src/server/services/operations";
+import { operationsProjection, proposeDashboard } from "../../src/lib/operations-model";
+import { optimisticOperations } from "../../src/lib/api/mutations/operations";
+import { dashboardProgramSources } from "../../src/contracts/dashboard-program";
+
+const now = "2026-11-14T12:00:00Z";
+let state = operationsSchema.parse({ mode: "simulation", revision: 0, viewerId: "owner", people: [{ id: "owner", name: "Marina", sectorIds: [], roleIds: [], reportsTo: [], goals: ["Qualidade"] }, { id: "other", name: "Carlos", sectorIds: [], roleIds: [], reportsTo: [], goals: [] }], sectors: [], roles: [], agentIds: [], rules: [{ id: "owner-rule", subjectKind: "person", subjectId: "owner", resource: "*", actions: ["read", "write", "admin"], effect: "allow", sectorIds: [], reason: "Test", expiresAt: null, approvedBy: "owner" }], dashboards: [], notebooks: [], deliveries: [], actions: [], audit: [], connectors: [], dataset: { source: "fixture", sha256: "", records: 10, rejected: 0, duplicates: 0, failures: 2, machines: [] } });
+const mutate = (change: OperationsChange["change"]) => {
+  const input = { expectedRevision: state.revision, change };
+  const optimistic = optimisticOperations(state, input);
+  const next = applyOperationsChange(state, input, now, `audit:${state.revision}`);
+  if (change.type.startsWith("dashboard") && (change.type !== "dashboard" || change.dashboard.personId === state.viewerId)) assert.deepEqual((optimistic as typeof state).dashboards.map((item) => item.id), next.dashboards.map((item) => item.id));
+  state = next;
+};
+const first: Dashboard = { ...proposeDashboard(state.people[0], "Qualidade", now), id: "dashboard:first" };
+mutate({ type: "dashboard", dashboard: first });
+mutate({ type: "dashboard", dashboard: { ...first, id: "dashboard:second", title: "Segundo" } });
+assert.equal(state.dashboards.length, 2, "Creating a second dashboard cannot replace the first");
+mutate({ type: "dashboard", dashboard: { ...first, title: "Primeiro editado" } });
+assert.equal(state.dashboards.find((item) => item.id === "dashboard:second")?.title, "Segundo");
+mutate({ type: "dashboard-rename", dashboardId: "dashboard:second", title: "Rotinas" });
+mutate({ type: "dashboard-duplicate", dashboardId: "dashboard:second", newId: "dashboard:copy" });
+assert.equal(state.dashboards.length, 3);
+mutate({ type: "dashboard-delete", dashboardId: "dashboard:first" });
+assert.deepEqual(state.dashboards.map((item) => item.id), ["dashboard:second", "dashboard:copy"]);
+assert.throws(() => applyOperationsChange(state, { expectedRevision: 0, change: { type: "dashboard-delete", dashboardId: "dashboard:second" } }, now, "stale"), /workspace mudou/u);
+const privatePanel: Dashboard = { ...first, id: "dashboard:other", personId: "other" };
+mutate({ type: "dashboard", dashboard: privatePanel });
+assert.equal(operationsProjection(state).dashboards.some((item) => item.id === privatePanel.id), false);
+mutate({ type: "viewer", personId: "other" });
+assert.deepEqual(operationsProjection(state).dashboards.map((item) => item.id), [privatePanel.id]);
+assert.throws(() => applyOperationsChange(state, { expectedRevision: state.revision, change: { type: "dashboard-delete", dashboardId: "dashboard:second" } }, now, "denied"), /permissão/u);
+const program = 'quality = Query("dashboardData", {source:"quality"})\nroot = Stack([Table(quality)])';
+assert.deepEqual([...dashboardProgramSources(program)], ["quality"]);
+assert.throws(() => applyOperationsChange(state, { expectedRevision: state.revision, change: { type: "dashboard", dashboard: { ...privatePanel, program, widgets: [] } } }, now, "denied-data"), /permissão/u);
+console.log("PASS multiple dashboards: preserve IDs, optimistic CRUD, conflict, ownership, persona isolation and program source authorization");

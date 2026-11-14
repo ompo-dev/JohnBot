@@ -1,0 +1,23 @@
+node_modules/
+src/generated/prisma/
+.upstream-sync/
+.next/
+out/
+*.log
+dist/
+dist-ssr/
+*.local
+.zwork/
+tsconfig.tsbuildinfo
+*.tsbuildinfo
+.agents/
+.env
+.env.*
+!.env.example
+.DS_Store
+tools/clone/*.json
+!tools/clone/manifest.json
+
+# Tauri
+src-tauri/target/
+src-tauri/gen/

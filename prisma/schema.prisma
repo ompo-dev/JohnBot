@@ -1,0 +1,117 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// Preserve existing validated aggregate contracts while external services remain mocks.
+model DomainRecord {
+  sessionId String   @db.VarChar(128)
+  domain    String   @db.VarChar(256)
+  payload   Json     @db.JsonB
+  revision  Int      @default(0)
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+  updatedAt DateTime @updatedAt @db.Timestamptz(3)
+  jobs      BackgroundJob[]
+
+  @@id([sessionId, domain])
+  @@map("domain_records")
+}
+
+enum JobStatus {
+  PENDING
+  ENQUEUED
+  RUNNING
+  SUCCEEDED
+  FAILED
+  CANCELLED
+}
+
+model BackgroundJob {
+  id            String    @id @default(uuid()) @db.Uuid
+  sessionId     String    @db.VarChar(128)
+  domain        String    @db.VarChar(256)
+  revision      Int
+  type          String    @default("cache.refresh") @db.VarChar(64)
+  status        JobStatus @default(PENDING)
+  attempts      Int       @default(0)
+  generation    Int       @default(0)
+  dispatchToken String?   @db.Uuid
+  dispatchUntil DateTime? @db.Timestamptz(3)
+  runToken      String?   @db.Uuid
+  lastError     String?   @db.VarChar(512)
+  createdAt     DateTime  @default(now()) @db.Timestamptz(3)
+  updatedAt     DateTime  @updatedAt @db.Timestamptz(3)
+  completedAt   DateTime? @db.Timestamptz(3)
+  record        DomainRecord @relation(fields: [sessionId, domain], references: [sessionId, domain], onDelete: Cascade)
+
+  @@unique([sessionId, domain, revision, type])
+  @@index([status, dispatchUntil, createdAt])
+  @@index([sessionId, createdAt])
+  @@map("background_jobs")
+}
+// John Twin: the factory as data (the screens read these tables instead of the demo arrays).
+model TwinNode {
+  id       String  @id @db.VarChar(64)
+  kind     String  @db.VarChar(32)
+  name     String  @db.VarChar(200)
+  detail   String  @db.VarChar(4000)
+  dept     String? @db.VarChar(64)
+  status   String? @db.VarChar(64)
+  position Int     @default(0)
+
+  @@index([dept])
+  @@index([kind])
+  @@map("twin_nodes")
+}
+
+model TwinEdge {
+  id    String  @id @default(uuid()) @db.Uuid
+  from  String  @db.VarChar(64)
+  to    String  @db.VarChar(64)
+  label String? @db.VarChar(80)
+
+  @@unique([from, to, label])
+  @@index([from])
+  @@map("twin_edges")
+}
+
+model TwinNotebook {
+  id         String   @id @db.VarChar(64)
+  title      String   @db.VarChar(200)
+  ownerKind  String   @db.VarChar(32)
+  ownerId    String   @db.VarChar(64)
+  visibility String[] @default([])
+  entries    TwinNotebookEntry[]
+
+  @@index([ownerId])
+  @@map("twin_notebooks")
+}
+
+model TwinNotebookEntry {
+  id         String       @id @db.VarChar(64)
+  notebookId String       @db.VarChar(64)
+  date       DateTime     @db.Timestamptz(3)
+  author     String       @db.VarChar(200)
+  text       String       @db.VarChar(8000)
+  tags       String[]     @default([])
+  links      String[]     @default([])
+  notebook   TwinNotebook @relation(fields: [notebookId], references: [id], onDelete: Cascade)
+
+  @@index([notebookId])
+  @@map("twin_notebook_entries")
+}
+
+model TwinAccessException {
+  id        String    @id @db.VarChar(64)
+  personId  String    @db.VarChar(64)
+  scope     String    @db.VarChar(120)
+  reason    String    @db.VarChar(500)
+  expiresAt DateTime? @db.Timestamptz(3)
+
+  @@index([personId])
+  @@map("twin_access_exceptions")
+}

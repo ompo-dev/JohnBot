@@ -1,0 +1,437 @@
+/*
+ * Every --johnbot-* token in the product is written here, once. The desktop
+ * renderer, the public web app and the mobile app all @import this file; none of
+ * them declares a token of its own. That was not true until recently - the same
+ * names lived in three files that no single commit had ever touched together, so
+ * the web palette was a frozen snapshot of a desktop palette that had moved on by
+ * two hundred tokens, and a token added for one surface was simply absent on the
+ * other two. Keep this file the only declaration site.
+ *
+ * The values here are the base, dark palette. The desktop app and the web client
+ * layer tokens-light.css on top of this file for their light appearance; mobile
+ * layers tokens-native.css. Both change values only; neither declares a new token.
+ */
+
+:root {
+  --johnbot-provider-current: currentcolor;
+  /* Main screen canvas and drawer, used by the native app. The desktop also uses the sidebar, the
+     sheet (its menus) and the grouped tokens, so tokens-light.css sets them too. */
+  --johnbot-bg-native-canvas: #141414;
+  --johnbot-bg-native-sidebar: #141414;
+  /* Grouped sheet surfaces, used by the native app. */
+  --johnbot-bg-sheet: #141414;
+  --johnbot-bg-grouped: #212121;
+  --johnbot-text-grouped-secondary: #96969b;
+  --johnbot-border-grouped: #333335;
+  --johnbot-radius-grouped: 16px;
+  /* The milky chrome of the native app where it has no Liquid Glass: the search field and bar buttons. */
+  --johnbot-bg-chrome-glass: rgba(38, 38, 40, 0.96);
+  --johnbot-border-chrome-glass: rgba(255, 255, 255, 0.08);
+  /* The fill of that chrome over a real blur, lighter than the solid glass. */
+  --johnbot-bg-chrome-blur: rgba(26, 26, 28, 0.62);
+
+  /* Neutral color system. Keep UI colors here, not in components. */
+  --johnbot-bg-canvas: #1a1a1a;
+  /* The window frame around the page card, darker than the card, so the card comes forward. */
+  --johnbot-bg-frame: #0d0d0d;
+  /* A rail inside a menu, a step darker than the menu sheet. */
+  --johnbot-bg-sheet-inset: #101010;
+  --johnbot-bg-canvas-clear: rgba(26, 26, 26, 0);
+  --johnbot-bg-sidebar: #1a1a1a;
+  --johnbot-marketplace-detail-bg: #111111;
+  --johnbot-bg-surface: #212121;
+  --johnbot-bg-surface-raised: #242424;
+  --johnbot-bg-control: #212121;
+  --johnbot-bg-control-hover: #242424;
+  --johnbot-bg-control-active: #2a2a2a;
+  --johnbot-tabs-bar-bg: #212121;
+  --johnbot-tabs-pill-bg: #2a2a2a;
+  --johnbot-bg-overlay: rgba(26, 26, 26, 0.92);
+  --johnbot-dialog-overlay: rgba(0, 0, 0, 0.1);
+  --johnbot-dialog-ring: rgba(255, 255, 255, 0.1);
+  --johnbot-bg-glass: rgba(33, 33, 33, 0.76);
+
+  /* Translucent glass surfaces: the landing page, and the browser dock and previews of the desktop. */
+  --johnbot-glass-surface: rgba(255, 255, 255, 0.07);
+  --johnbot-glass-surface-hover: rgba(255, 255, 255, 0.11);
+  --johnbot-glass-border: rgba(255, 255, 255, 0.18);
+  --johnbot-glass-highlight: rgba(255, 255, 255, 0.12);
+  --johnbot-glass-shadow: rgba(0, 0, 0, 0.28);
+  --johnbot-hero-grid-line: rgba(214, 173, 242, 0.09);
+
+  /* The landing price figure, and nothing else: a dark glass "$0" lit by one soft
+     iridescent band. These are a material, not aliases of the neutral palette -
+     the body sits a shade either side of the canvas so the glyph reads as a solid
+     object, and the band is the only warm/cool pair on the page. */
+  --johnbot-price-metal-high: #4c4c4c;
+  --johnbot-price-metal-core: #1f1f1f;
+  --johnbot-price-metal-low: #343434;
+  --johnbot-price-sheen-cool: rgba(150, 196, 255, 0.92);
+  --johnbot-price-sheen-light: rgba(240, 244, 250, 0.98);
+  --johnbot-price-sheen-warm: rgba(255, 184, 132, 0.94);
+  /* The band has to fade out through its own hue. Fading to --johnbot-transparent
+     would interpolate towards transparent *black* and leave a dirty grey halo
+     above and below the light. */
+  --johnbot-price-sheen-cool-soft: rgba(150, 196, 255, 0.26);
+  --johnbot-price-sheen-warm-soft: rgba(255, 184, 132, 0.28);
+  --johnbot-price-sheen-cool-clear: rgba(150, 196, 255, 0);
+  --johnbot-price-sheen-warm-clear: rgba(255, 184, 132, 0);
+  --johnbot-price-rim: rgba(255, 255, 255, 0.28);
+  --johnbot-price-rim-under: rgba(255, 255, 255, 0.1);
+  --johnbot-price-glow: rgba(180, 200, 255, 0.22);
+  --johnbot-bg-host-inset: #101216;
+  --johnbot-bg-notch: #000000;
+  --johnbot-mask-solid: #000000;
+  --johnbot-transparent: rgba(0, 0, 0, 0);
+  --johnbot-drawer-scrim: #000000;
+  --johnbot-scroll-edge-overlay: rgba(0, 0, 0, 0.72);
+  --johnbot-queue-surface: var(--johnbot-bg-surface);
+  --johnbot-queue-border: var(--johnbot-border-strong);
+  --johnbot-queue-text: var(--johnbot-text-primary);
+  --johnbot-queue-action: var(--johnbot-text-muted);
+  --johnbot-border: rgba(255, 255, 255, 0.035);
+  --johnbot-border-strong: rgba(255, 255, 255, 0.045);
+  --johnbot-image-outline: rgba(255, 255, 255, 0.1);
+  /* Focus is neutral: a grey border or a thin grey ring, never blue and never a halo. */
+  --johnbot-border-focus: var(--johnbot-text-muted);
+  --johnbot-text-primary: #ffffff;
+  --johnbot-text-on-light: #141414;
+  --johnbot-surface-light: #f0f0f0;
+  /* Not a duplicate of surface-light/text-on-light: tokens-native.css swaps this pair
+     between the mobile light and dark themes, so it is the high-contrast button that
+     inverts with the theme. Only mobile's uniwind mapping reads it. */
+  --johnbot-action: #f0f0f0;
+  --johnbot-action-foreground: #141414;
+  --johnbot-qr-background: #ffffff;
+  /* Ink on paper that is always light, in both themes: a QR code, the onboarding drawing of a
+     computer, the profile image that is shared. The on-light tokens above turn dark in the light
+     theme, because there they are the inverted element; these never change. */
+  --johnbot-paper: #f0f0f0;
+  --johnbot-paper-text: #141414;
+  --johnbot-paper-text-muted: rgba(20, 20, 20, 0.52);
+  --johnbot-paper-text-dim: rgba(20, 20, 20, 0.36);
+  --johnbot-paper-border: rgba(20, 20, 20, 0.14);
+  --johnbot-onboarding-desktop-mist: #dbe9ff;
+  --johnbot-onboarding-desktop-blue: #7eb4f2;
+  --johnbot-onboarding-desktop-indigo: #6f7de8;
+  /* The dither tiles of the sound theme picker: a back and an ink color for each sound theme. */
+  --johnbot-sound-warm-back: #d95926;
+  --johnbot-sound-warm-ink: #f2c46b;
+  --johnbot-sound-mech-back: #1f1f1f;
+  --johnbot-sound-mech-ink: #dbe9ff;
+  --johnbot-sound-bubble-back: #5b5fe0;
+  --johnbot-sound-bubble-ink: #8bdee8;
+  --johnbot-sound-press-back: #ff1e5e;
+  --johnbot-sound-press-ink: #ffd8a8;
+  --johnbot-sound-off-back: #212121;
+  --johnbot-sound-off-ink: #4c4c4c;
+  --johnbot-onboarding-window: #f3f5f8;
+  --johnbot-text-secondary: #dcdcdc;
+  --johnbot-text-muted: #979797;
+  --johnbot-text-dim: #6a6a6a;
+  --johnbot-text-readable: rgba(255, 255, 255, 0.52);
+  --johnbot-text-muted-on-light: rgba(20, 20, 20, 0.52);
+  --johnbot-text-dim-on-light: rgba(20, 20, 20, 0.36);
+  --johnbot-download-card-muted: rgba(20, 20, 20, 0.68);
+  --johnbot-download-card-chip: rgba(20, 20, 20, 0.1);
+  --johnbot-download-card-border: rgba(20, 20, 20, 0.16);
+  --johnbot-download-card-focus: rgba(242, 242, 242, 0.86);
+  --johnbot-text-placeholder: #bfbfbf;
+  --johnbot-text-on-accent: #ffffff;
+  --johnbot-text-on-status: #07130c;
+  /* Hue 210, sampled from the reference UIs rather than picked: their status dot is
+     #007cf7 and their link and section headings are #42a0ff, both hue 210. The palette
+     sat at hue 206, which reads cyan next to them, and accent-text was 71% light,
+     which reads washed out. */
+  --johnbot-accent: #007cf7;
+  --johnbot-accent-hover: #1f8fff;
+  --johnbot-accent-text: #42a0ff;
+  --johnbot-accent-soft: rgba(0, 124, 247, 0.16);
+  --johnbot-accent-strong: rgba(0, 124, 247, 0.34);
+  --johnbot-settings-text-muted: rgba(255, 255, 255, 0.59);
+  --johnbot-provider-codex: var(--johnbot-text-primary);
+  --johnbot-provider-claude: #d97757;
+  --johnbot-provider-grok: var(--johnbot-text-primary);
+  /* The Gemini brand colour that Simple Icons gives. */
+  --johnbot-provider-antigravity: #8e75b2;
+  /* A chart series needs a hue of its own: the logo colours above give codex and grok the
+     same white, which no reader can tell apart in two overlaid areas. Validated together
+     with the dataviz skill's checker -
+     node scripts/validate_palette.js "#d6adf2,#d97757,#6bc7d9" --mode dark --surface "#1a1a1a"
+     - for colour-vision separation and contrast on the canvas. */
+  --johnbot-chart-series-codex: #d6adf2;
+  --johnbot-chart-series-claude: var(--johnbot-provider-claude);
+  --johnbot-chart-series-grok: #6bc7d9;
+  --johnbot-chart-series-other: var(--johnbot-text-muted);
+  /* The storage bar: five hues in this fixed order, then neutral app data. Validated with
+     node scripts/validate_palette.js "#3987e5,#d95926,#199e70,#9085e9,#c98500" --mode dark --surface "#1a1a1a"
+     and again on #212121. */
+  --johnbot-chart-storage-workspaces: #3987e5;
+  --johnbot-chart-storage-files: #d95926;
+  --johnbot-chart-storage-chats: #199e70;
+  --johnbot-chart-storage-downloads: #9085e9;
+  --johnbot-chart-storage-runtimes: #c98500;
+  --johnbot-chart-storage-app: var(--johnbot-text-dim);
+  --johnbot-logo-production: #d6adf2;
+  --johnbot-logo-eye: #040007;
+  /* The eyes of the release logo. The logo color setting changes it with `--johnbot-logo-production`;
+     a dev or preview logo keeps `--johnbot-logo-eye`. */
+  --johnbot-logo-production-eye: var(--johnbot-logo-eye);
+  /* The build colors of the logo match the app icons in `build/icon-*.png`, so the Dock, the app
+     and the Dynamic Island show one color for each build. They are brand colors, not status
+     colors: a change to warning or success does not change them. */
+  --johnbot-logo-dev: #e3b866;
+  --johnbot-logo-preview: #61c985;
+  --johnbot-unread-surface: #74b9ff;
+  --johnbot-unread-text: #07131f;
+  /* The last hue that had not been retuned with the rest. #61c985 was OKLCH chroma
+     0.139 while accent, warning and danger now average 0.205, so green was the one
+     family member that still read as a disabled tint beside them. Matching 0.205 is
+     not possible: sRGB tops out at 0.195 along this hue, and that ceiling value
+     (#00d271) is a neon with no headroom, which every renderer clips differently.
+     0.180 is the usable step, and lightness is held at the old 0.756 so contrast on
+     the canvas is unchanged at 8.5:1 and no text legibility moves. */
+  --johnbot-success: #31cf76;
+  /* Status text sits on neutral surfaces; status fills have separate contrast needs. */
+  --johnbot-success-text: #31cf76;
+  --johnbot-warning-text: #ff9412;
+  --johnbot-danger-text: #ff6069;
+  --johnbot-success-soft: rgba(49, 207, 118, 0.12);
+  --johnbot-success-wash: rgba(49, 207, 118, 0.045);
+  /* Both warning marks in the reference measure hue 33 at full saturation (#ff9917 on
+     the triangle, #ff9412 on the heading). The palette's #e3b866 was a desaturated gold
+     at hue 39, which reads as a disabled state rather than as something needing attention. */
+  --johnbot-warning: #ff9412;
+  --johnbot-warning-soft: rgba(255, 148, 18, 0.12);
+  --johnbot-question-option: #6bc7d9;
+  --johnbot-question-option-soft: rgba(107, 199, 217, 0.14);
+  --johnbot-question-option-hover: rgba(107, 199, 217, 0.2);
+  --johnbot-question-option-pressed: rgba(107, 199, 217, 0.26);
+  --johnbot-island-identity-name: var(--johnbot-text-primary);
+  --johnbot-question-badge-text: #8bdee8;
+  --johnbot-question-badge-soft: rgba(107, 199, 217, 0.16);
+  --johnbot-message-badge-text: #91c8ff;
+  --johnbot-message-badge-soft: rgba(116, 185, 255, 0.16);
+  /* The "new thing is available" pill. It is deliberately not --johnbot-accent: an
+     announcement is not an action. */
+  --johnbot-badge-new: #ff1e5e;
+  --johnbot-badge-new-soft: rgba(255, 30, 94, 0.16);
+  /* The moving border of an offer, such as the hosted server offer: teal, blue, then pink. */
+  --johnbot-beam-teal: var(--johnbot-file-teal);
+  --johnbot-beam-blue: var(--johnbot-accent-text);
+  --johnbot-beam-pink: var(--johnbot-file-pink);
+  --johnbot-approval-badge-soft: rgba(255, 148, 18, 0.18);
+  /* One red. The palette carried four families - danger (#e47d75), danger-strong
+     (#ff4058), settings-danger (#eb4145) and button-destructive (oklch, #ff6467) -
+     all between hue 352 and 359, i.e. the same red at four saturations, and the
+     settings family existed only to re-override button-destructive inside one modal.
+     #fd2f3b is the reference's count badge. The five steps below are roles, not
+     shades: solid fill, its hover, tinted fill, its hover, ring, border. */
+  --johnbot-danger: #fd2f3b;
+  --johnbot-danger-hover: #fd5d67;
+  --johnbot-danger-soft: rgba(253, 47, 59, 0.16);
+  --johnbot-danger-soft-hover: rgba(253, 47, 59, 0.28);
+  --johnbot-danger-focus: rgba(253, 47, 59, 0.4);
+  --johnbot-danger-border: rgba(253, 47, 59, 0.5);
+  /* Literal values: the mobile themes repeat these in tokens-native.css, where var() resolves to
+   * nothing. They equal warning, question-option, success, danger and accent-text. */
+  --johnbot-file-blue: #74b9ff;
+  --johnbot-file-blue-soft: rgba(116, 185, 255, 0.14);
+  --johnbot-file-yellow: #ff9412;
+  --johnbot-file-yellow-soft: rgba(255, 148, 18, 0.12);
+  --johnbot-file-orange: #f0a06a;
+  --johnbot-file-orange-soft: rgba(240, 160, 106, 0.14);
+  --johnbot-file-teal: #6bc7d9;
+  --johnbot-file-teal-soft: rgba(107, 199, 217, 0.14);
+  --johnbot-file-green: #31cf76;
+  --johnbot-file-green-soft: rgba(49, 207, 118, 0.12);
+  --johnbot-file-red: #fd2f3b;
+  --johnbot-file-red-soft: rgba(253, 47, 59, 0.16);
+  --johnbot-file-pink: #d98ac9;
+  --johnbot-file-pink-soft: rgba(217, 138, 201, 0.14);
+  --johnbot-file-default: #42a0ff;
+  --johnbot-file-default-soft: rgba(0, 124, 247, 0.14);
+  --johnbot-data-table-border: #303030;
+  --johnbot-data-table-header-text: #a1a1a1;
+  --johnbot-data-table-text: #f5f5f5;
+  --johnbot-data-table-outer-border: rgba(255, 255, 255, 0);
+  --johnbot-data-table-ring: rgba(255, 255, 255, 0.12);
+  --johnbot-shadow-popover-ambient: rgba(0, 0, 0, 0.1);
+  --johnbot-shadow-dialog: rgba(0, 0, 0, 0.48);
+  --johnbot-shadow-menu: rgba(0, 0, 0, 0.45);
+  --johnbot-shadow-dynamic-island: rgba(0, 0, 0, 0.6);
+  --johnbot-shadow-ring: rgba(228, 228, 228, 0.04);
+  --johnbot-border-on-light: rgba(20, 20, 20, 0.14);
+  --johnbot-hover: rgba(255, 255, 255, 0.06);
+  --johnbot-font-sans: "Inter Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --johnbot-font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace;
+  /* Six steps, one line-height each, named for the step it pairs with. The scale had
+   * sixteen sizes and eight line-heights, four of them a single call site, which is how
+   * an 11px size ended up paired with a 26px line-height. scripts/ui-foundation-check.ts
+   * holds "untokenized font-size" at zero, so a size that is not here has nowhere to go. */
+  --johnbot-text-sm: 12px;
+  --johnbot-text-md: 13px;
+  --johnbot-text-lg: 14px;
+  --johnbot-text-xl: 16px;
+  --johnbot-text-2xl: 18px;
+  --johnbot-text-3xl: 24px;
+  --johnbot-leading-sm: 16px;
+  --johnbot-leading-md: 18px;
+  --johnbot-leading-lg: 20px;
+  --johnbot-leading-xl: 22px;
+  --johnbot-leading-2xl: 24px;
+  --johnbot-leading-3xl: 30px;
+
+  /* Not scale steps, and named for their surface so they do not read as one. Three
+   * full-bleed screens (login wordmark, first-run setup, onboarding) and the public
+   * landing page carry type above 24px; .landing-hero-logo is sized in em off
+   * --johnbot-text-hero, so that token is layout, not just type. */
+  --johnbot-text-display: 32px;
+  --johnbot-text-usage-total: clamp(2rem, 5cqi, 3.5rem);
+  --johnbot-leading-display: 38px;
+  --johnbot-text-hero: clamp(3rem, 8vw, 6.5rem);
+
+  /* Glyphs, not copy: a file-extension string inside a fixed 16-24px chip. Below the
+   * scale's floor because the container is fixed, not because the text is small. Outside
+   * the text-* namespace so text-* means exactly the six steps above. */
+  --johnbot-glyph-xs: 7px;
+  --johnbot-glyph-sm: 8px;
+
+  --johnbot-weight-regular: 400;
+  --johnbot-weight-medium: 500;
+  --johnbot-weight-semibold: 600;
+  --johnbot-weight-bold: 700;
+  --johnbot-tracking-tight: -0.1px;
+  --johnbot-tracking-normal: 0;
+  --johnbot-tracking-wide: 0.02em;
+  --johnbot-space-0-5: 2px;
+  --johnbot-space-1: 4px;
+  --johnbot-space-1-5: 6px;
+  --johnbot-space-2: 8px;
+  --johnbot-space-3: 12px;
+  --johnbot-space-4: 16px;
+  --johnbot-space-6: 24px;
+  --johnbot-space-8: 32px;
+  --johnbot-scrollbar-size: 8px;
+  --johnbot-radius-xs: 4px;
+  --johnbot-radius-sm: 6px;
+  --johnbot-radius-md: 8px;
+  --johnbot-radius-lg: 12px;
+  --johnbot-radius-card: 14px;
+  --johnbot-radius-xl: 20px;
+  --johnbot-radius-bubble: 22px;
+  --johnbot-radius-bubble-inset: calc(var(--johnbot-radius-bubble) - var(--johnbot-space-3) - 1px);
+  --johnbot-radius-modal: 30px;
+  --johnbot-radius-media-preview: calc(var(--johnbot-radius-lg) - 1px);
+  --johnbot-radius-pill: 999px;
+  --johnbot-radius-logo: 20%;
+  --johnbot-control-xs: 24px;
+  --johnbot-control-sm: 28px;
+  --johnbot-control-md: 32px;
+  --johnbot-control-lg: 36px;
+  --johnbot-control-xl: 40px;
+  /* The switch follows the same compact pill proportions across desktop and web.
+   * Keep its geometry named so the motion code can measure the same inset and travel
+   * that CSS paints. */
+  --johnbot-switch-width: 36px;
+  --johnbot-switch-height: 20px;
+  --johnbot-switch-thumb: 16px;
+  --johnbot-switch-inset: 2px;
+  --johnbot-switch-sm-width: 24px;
+  --johnbot-switch-sm-height: 14px;
+  --johnbot-switch-sm-thumb: 12px;
+  --johnbot-switch-sm-inset: 1px;
+  /* Unitless on purpose. Lucide icons carry viewBox="0 0 24 24", so CSS stroke-width
+   * resolves in user units, not px: a literal 1px paints 1 * (16/24) = 0.67 device px at
+   * the 16px default size and reads blurry. 1.5 user units is the 1px the design asks for.
+   *
+   * Which is also why three kinds of SVG keep a weight of their own rather than reading
+   * this: the hand-written icons under src/renderer/src/features draw on a 16- or 20-unit
+   * viewBox, so the same number paints a different device weight there; the onboarding
+   * computer is a drawing, not an icon; and the checkbox tick would come out at 0.75
+   * device px inside its 12px box. Every lucide icon in the renderer reads this token. */
+  --johnbot-icon-stroke: 1.5;
+  --johnbot-icon-xs: 12px;
+  --johnbot-icon-sm: 14px;
+  --johnbot-icon-md: 16px;
+  --johnbot-icon-lg: 20px;
+  --johnbot-chat-entry-gap: var(--johnbot-space-3);
+  --johnbot-chat-marker-gap: var(--johnbot-space-1);
+  --johnbot-chat-marker-height: var(--johnbot-control-xs);
+  --johnbot-chat-marker-avatar: var(--johnbot-icon-md);
+  /* Keep container-relative calculations at the CSS use site for native consumers. */
+  --johnbot-chat-marker-width: 680px;
+  --johnbot-duration-fast: 120ms;
+  --johnbot-duration-hover: 0ms;
+  --johnbot-duration-dialog: 100ms;
+  --johnbot-duration-normal: 160ms;
+  --johnbot-duration-slow: 200ms;
+  --johnbot-duration-overlay: 240ms;
+  --johnbot-duration-toast-enter: 340ms;
+  --johnbot-duration-toast-exit: 220ms;
+  --johnbot-duration-island-content: 340ms;
+  --johnbot-duration-island-content-exit: 220ms;
+  --johnbot-agent-activity-exit-delay: 500ms;
+  /* A loading indicator waits this long, so a fast answer replaces it before it shows. */
+  --johnbot-loading-indicator-delay: 400ms;
+  --johnbot-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --johnbot-ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --johnbot-shadow-raised: 0 12px 32px var(--johnbot-shadow-popover-ambient);
+  --johnbot-shadow-card: 0 0 0 transparent;
+  --johnbot-shadow-overlay: 0 12px 32px rgba(0, 0, 0, 0.48);
+  --johnbot-focus-ring: 0 0 0 1px var(--johnbot-border-focus);
+  --johnbot-layer-dropdown: 40;
+  --johnbot-layer-popover: 60;
+  --johnbot-layer-dialog: 100;
+  /* A dialog that opens other surfaces over itself, such as the marketplace. Its own menus take
+     one above it, and a dialog it opens takes two, so the order is stated once here instead of
+     being re-derived by arithmetic at each surface - where a tie is decided by insertion order,
+     and the surface opened last wins only by accident. */
+  --johnbot-layer-dialog-host: calc(var(--johnbot-layer-dialog) + var(--johnbot-layer-popover));
+  --johnbot-layer-toast: 120;
+  /* A tooltip names the control under the pointer. It shows above every other layer, also above
+     a dialog or a menu that holds the control. */
+  --johnbot-layer-tooltip: 240;
+}
+
+/* Every surface that paints a provider - the picker mark, the update toast and its progress bar,
+   the usage icon, the account picker, the landing page - used to carry one rule per provider per
+   surface, so a new provider meant ten new rules across five stylesheets before it had a colour.
+   These rules are the only place a provider id meets its colour; a surface writes
+   `data-provider` on the element and reads `--johnbot-provider-current`. A provider with no rule
+   here falls back to the current text colour rather than to another provider's brand. */
+[data-provider] {
+  --johnbot-provider-current: currentcolor;
+}
+
+[data-provider="codex"] {
+  --johnbot-provider-current: var(--johnbot-provider-codex);
+}
+
+[data-provider="claude"] {
+  --johnbot-provider-current: var(--johnbot-provider-claude);
+}
+
+[data-provider="grok"] {
+  --johnbot-provider-current: var(--johnbot-provider-grok);
+}
+
+[data-provider="opencode"] {
+  --johnbot-provider-current: var(--johnbot-text-primary);
+}
+
+[data-provider="antigravity"] {
+  --johnbot-provider-current: var(--johnbot-provider-antigravity);
+}
+
+[data-provider="cursor"] {
+  --johnbot-provider-current: var(--johnbot-text-primary);
+}
+
+[data-provider="cline"] {
+  --johnbot-provider-current: var(--johnbot-text-primary);
+}
+
+[data-provider="acp"] {
+  --johnbot-provider-current: var(--johnbot-text-primary);
+}

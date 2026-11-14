@@ -1,0 +1,297 @@
+{
+  "created": "2026-11-11T13:18:12.493Z",
+  "nuqs": "2.10.3",
+  "backup": ".upstream-sync/nuqs-before.tar",
+  "model": "opencode/deepseek-v4.1-flash-free#low",
+  "changes": [
+    {
+      "file": "src/app/layout.tsx",
+      "before": "2940d8d207c4403d3fd8865b5b7e7ed45ade6d92c38cf4462729870adcbe813d",
+      "after": "9ae25760877100cf7c8fe431b85a3ff768fc8f5e87725202c92273304c57125b"
+    },
+    {
+      "file": "src/App.tsx",
+      "before": "1f83f9739b730c43647ca89a4cab36f98551a3bc8fc208d90d5215773d5eef24",
+      "after": "b7b76ec5a257808e46749fbb69d609990386270e25ef6f6355538eac1d804b91"
+    },
+    {
+      "file": "src/components/molecules/select.tsx",
+      "before": "d5e13f53f23c07dbb3a7ec622f5ceac70ec766ff320563496739a2d0185331a7",
+      "after": "c13bbc8b5863f435339b5e028ecce175adc48d2dace8074f81128ac8a1a21ef2"
+    },
+    {
+      "file": "src/components/organisms/GlobalSearch.tsx",
+      "before": "dbc09ad30971e44991cf26a5fdefffe3e1f5a469013a7b22eda68300bdc04485",
+      "after": "d2dfcd178ff97d627c5ebc3ecbd7872e51b7c838c6a12e3d0eb8dfd3cd5daf42"
+    },
+    {
+      "file": "src/components/organisms/ProviderModelPicker.tsx",
+      "before": "3e3ac52b6ae89cb1ab4937047baed3db392f71adc18d81e274939bb127da934a",
+      "after": "2c079bb7ba985ccec8079ddc324f0a68a2b629f584ad07efa5e5bb28bb54813a"
+    },
+    {
+      "file": "src/features/agent-threads/agent-thread-tabs.ts",
+      "before": "7235e89e422be6ddacc0c59cab44661eb31a37b84563e91a7834a24ed75afd25",
+      "after": "0d3a15dc9237326ac0a779821e0b01de3cd19ea82191b483762ff08e333a31f2"
+    },
+    {
+      "file": "src/features/agents/agents-context.tsx",
+      "before": "a92c33440790ddf32bb024a189e842a4aa71017d9621e6baed09076bb32c21f7",
+      "after": "faf87f4922960358ae31ad3c311e96727128fbbb83e7bd3bae985ccac94d1316"
+    },
+    {
+      "file": "src/features/agents/FirstAgentSetup.tsx",
+      "before": "447024edfeebb56668e9ce790f31dea4ccdbdbc70aaceeefb52eb34f31826c2b",
+      "after": "19db4f7a5affa1617cd34642f12fbd535769f90ba07d971d63e259b49c307281"
+    },
+    {
+      "file": "src/features/channels/channels-context.tsx",
+      "before": "212f32649a54eb87f6ae4d0d6b97ec776d44d42eb085adcd7e4be851dc5b98a5",
+      "after": "d0c64ae06dac428ea6d77614425aa7af4dfba5a21affcbe1427a1f0861ba37cb"
+    },
+    {
+      "file": "src/features/conversation/ChatSearch.tsx",
+      "before": "0c3e65444046ab167faf359552d5ca391cfcfd33687fa8131b0dad3e666b6e05",
+      "after": "d63ecd7a2d3e0214d69b3703a06fdb9a40c6ed9055e23d3f6dc6bbcb2c5f6f83"
+    },
+    {
+      "file": "src/features/conversation/ContextUsage.tsx",
+      "before": "a6db54a334a4e60e8bf8c123eede70306567135694b4d971fb53b80215f86f04",
+      "after": "b2f32090e2e50bec25f86bcd9985fef0c5c51e2628bc2705c166d29eaaa2b1ef"
+    },
+    {
+      "file": "src/features/conversation/conversation-controller.ts",
+      "before": "a8131258d7d2a822dba01a712e0990fcd8abce4d1247e73f046315f06597dfdf",
+      "after": "2b88ef79eb1deff54f9d4d94ed25fe10eb3b3214cc85e56964ea920ceb22f361"
+    },
+    {
+      "file": "src/features/conversation/conversation-scope.ts",
+      "before": "b08716238de1716f43465ee63cf801b1826e65f5f379b867d36b9caa9a3744b1",
+      "after": "dd0ff309ef0186fb2e32faa4c5fe976524a4d65c0069259eb97c1df501b99d0d"
+    },
+    {
+      "file": "src/features/conversation/direct-messages-context.tsx",
+      "before": "016de48cae111bb6d794ae148997fa5e603f4261cf58e8109d7a3620e3b99a2b",
+      "after": "963d72c3baef17dd9f0c3aa08d7fa60b23cd2780f823b6016601ed6843906033"
+    },
+    {
+      "file": "src/features/conversation/RoutineCalendar.tsx",
+      "before": "500566328b6405da7f736d9f19ab92422e6c6ed916e4463b6ee514579acb42d8",
+      "after": "2b94ec4db8d71aef7667a6f6c9a2df88fcaf167614028d024f93b073c6710c1f"
+    },
+    {
+      "file": "src/features/conversation/SharedAgentSettingsPanel.tsx",
+      "before": "7496fc6a4e39b29ee2fb0bdf6ba6b8fa692b344b9aaaf93dd1408c299ecab4b6",
+      "after": "33bd14c1ce9cb6b3ab176beac9d99a78768cdbb23a16be04ba4a4d8b856c1fcb"
+    },
+    {
+      "file": "src/features/conversation/SidePanel.tsx",
+      "before": "0b70b5324a3886d5ce66173d1d008f7598ebb9a0975c58db09c0327a0abeec71",
+      "after": "296f12ccb94a26d5c148b3713a2fe255ad6d295adb17c5977cc2de3f392ede27"
+    },
+    {
+      "file": "src/features/conversation/stores/panels-store.ts",
+      "before": "cc89fb7e8aceb1bfaa2ed485b56444f3d635fd356a01c5366d9ca2692c003482",
+      "after": "24ad687cf99bfa7a691132cba78327d1a940f1381b2a7fd28366eb6020809718"
+    },
+    {
+      "file": "src/features/diagrams/DiagramNewAgentCard.tsx",
+      "before": "bc004f129b8cd8540ce9beb4f106fdaa9d7ea9d0773de012a37104a86d6152bc",
+      "after": "7f1b4158b570b3d8a71ae3f2e09555c102ea3eb5e5f3865e759536d274da3c3d"
+    },
+    {
+      "file": "src/features/marketplace/marketplace-query.ts",
+      "before": null,
+      "after": "b0786d4472b150d60163bee7d0c491f8063a0b95f9229ac060b51da13c784c1b"
+    },
+    {
+      "file": "src/features/marketplace/marketplace-view.ts",
+      "before": "27bf1f32a6038ad84a329883f1b6799f91d33236ba9408c2c135aef46a113bc4",
+      "after": "373fb72f3f481d22d402526ec916d7c9be02eaa7e3e90d7b3c3ea77b4e36921f"
+    },
+    {
+      "file": "src/features/schedule/SchedulePanel.tsx",
+      "before": "eac53cff41b79b9cee7d8d3a4a829e488a0c6bf469b67244c2ca4b1059076d77",
+      "after": "24a2522e6a7a578680fc8cd9d93e6b1fcbc587369df6bd057e4c2836c0e4d951"
+    },
+    {
+      "file": "src/features/servers/server-selection.tsx",
+      "before": "f5fae90eb5e0bf05cec6bad9cb8726287192f8fc6ee40366ca53b6eef9ae8068",
+      "after": "0b13f70e4afe889615eff9050a4ab01464e87e1941bda5b16c44a47ef7f44adf"
+    },
+    {
+      "file": "src/features/servers/server-settings.tsx",
+      "before": "b625567457a49d2d24a60f9b92d82e7bc90519268fba64fa40d9ed35f1467256",
+      "after": "8ebef315e02320a72fbeed825019da43a10d5bd3a73424e20e725f90524903a2"
+    },
+    {
+      "file": "src/features/servers/ServerMenu.tsx",
+      "before": "a22c519272359fe00e0f75bbf3caeeced2b32f858fdbbe321bacfd8205a4e356",
+      "after": "141514dfa80b957ed69fb2f8456eff10a6f87ae29557d34936f2749ac83806d6"
+    },
+    {
+      "file": "src/features/servers/servers-context.tsx",
+      "before": "a2048ff7e8c27dec06fc34a789c1220c710f2ec507f4439dfdb9ea7c60bce3b1",
+      "after": "b6138f9c550849317d94e6640cb748eaebbb64424ec31c48b2b02932f672962a"
+    },
+    {
+      "file": "src/features/servers/ServerSettingsModal.tsx",
+      "before": "17a470c2feeb45affa371ee183fdd9e11322d03f644da8e7e2cccab886cde01e",
+      "after": "530da4e0f10666542ad6a3a679705d0cd1f194696572187f8b78118732f51acf"
+    },
+    {
+      "file": "src/features/settings/ChannelParts.tsx",
+      "before": "3280036f7e689bde6c382c57f3ccf02b8945cc987e59fc101e682f46bd7be329",
+      "after": "f556bcd4e099a561f1c67d6d2844dc038f606316025eed286873fbe7fa555759"
+    },
+    {
+      "file": "src/features/settings/MarketplaceModal.tsx",
+      "before": "2f0b1d06719c61eb10ac32cd6f711a1f6f9efe69832585e29e772d3d12f781f9",
+      "after": "e370d2fd76bcfa048ae226836d2882b010f5b95ac721ae8a36d7a01572cb7575"
+    },
+    {
+      "file": "src/features/settings/ProfileActivity.tsx",
+      "before": "48570e7793ed7c2601c1d4ec635f870e7c009fe09ce9bdde579958db1c5e77b6",
+      "after": "03b283ac454f0da84a16b2514f359851f4d90a22b5786d363755e420b403ecdd"
+    },
+    {
+      "file": "src/features/settings/settings-context.tsx",
+      "before": "00e470652b1c3d2d5261b386ce8577b9a4e9938bbe95f9a4a6ecd5643d1a9bbe",
+      "after": "bb90fb37b7afc859201a4d0d3e71fdabe69cbd54c44fd30bcfee69c376d7e53d"
+    },
+    {
+      "file": "src/features/settings/SettingsModal.tsx",
+      "before": "4c3936b29597ec1a0e6891dff4c9a78e9d4ba9d03d3b49a4783108a31d1ca67e",
+      "after": "6c4cd3233ab0b923e0d88e4dfe05a1530fbb1eeebad1fc0c32594e4cb8242eb4"
+    },
+    {
+      "file": "src/features/updates/HelpMenu.tsx",
+      "before": "d6acddaa796e4c34b2bae1299eb52bb5235d96af632d9b6acbc21b505e38c5ee",
+      "after": "15c4c2c302c1b8f5e105281b20b6e01a94d206547a3ccdcb22274a143acd4999"
+    },
+    {
+      "file": "src/features/usage/AgentUsagePanel.tsx",
+      "before": "4ada57d3866e12d7497d375ddc0b0dc5a98551924c37da374a802f492867322f",
+      "after": "68d75cc2121049a1dfac506f208cab8b5e018eb978c3f5ed16e9d122f6ef601a"
+    },
+    {
+      "file": "src/features/usage/AgentUsageReport.tsx",
+      "before": "20cf5d578362aaf9fbb179586b0d9c1bc5672080e036b4d6023527d7581b0e0d",
+      "after": "a22293953091148ea95bb3b9f50ae8ec95673897d9265a755e1714ddf1bbec7b"
+    },
+    {
+      "file": "src/features/usage/usage-context.tsx",
+      "before": "8a43cd9ddfba82dd292ad193fda446b036b428c519d947c1a97710dda6658931",
+      "after": "b81ecdfe4f1e4c3aa7bee6fe16d95b55a49bed0085ea1b47c5628b7e791db148"
+    },
+    {
+      "file": "src/features/window/PageRail.tsx",
+      "before": "7febdc600761b429bdf4668546cae809c1eb05bfe52dc6d993882952386a642c",
+      "after": "39d364622b70a1260709bb52ee85eb4bf37464474cb2dbf7cae19cf6b0f54aba"
+    },
+    {
+      "file": "src/features/window/RailHelpMenu.tsx",
+      "before": "f4800214352eff1c1cb6c9349d06d38ae331fd82efcba48e39f3fada836f94d6",
+      "after": "91c8e15d46a1bd72ffab498ca8903754017e7920117dbebb2cd8e8b4a456c800"
+    },
+    {
+      "file": "src/features/window/window-page-context.tsx",
+      "before": "8ba9a4a70789e6b15ad35181c1b85166396ee93a40aedbdf37cd2a1defc1eb76",
+      "after": "193d258f304eace9e751969fdf94f18db66ef97fe63bf2b8286959c1bed2e633"
+    },
+    {
+      "file": "src/features/workflows/workflows-controller.ts",
+      "before": "56b052ee99e00bc4532fea73bc6320d62a29afe32896d8d7bd728266a610e63a",
+      "after": "be8b6149aa1476ab717d8c0b04fc91dcc36cf56a9dd1f3ca45f365d70ef6f918"
+    },
+    {
+      "file": "src/index.tsx",
+      "before": "47b1672a8577050add98e9443fe59f3bdbb47629f363e153a7058b3724e4deae",
+      "after": "a2f7a4a862c1aa252c60dee0a80b30d622874d581cdc661a5db50857da36c80b"
+    },
+    {
+      "file": "src/lib/kobalte-compat.tsx",
+      "before": "83752cfc5c8efc5996ff777eeea9fe45851986fdf6d848ce7f94b5e8aaa6fa37",
+      "after": "13064ca6b806565cb3a8d5d61a6566d604dc2bf62ea8b7ef7152ec08d8d23d27"
+    },
+    {
+      "file": "src/lib/kobalte-popup-state.ts",
+      "before": "e7a5a057065e6025d9a037274a24b80f120f8f8b389c3621ebe7b3b0ddb2c669",
+      "after": "00426b053b5ade9ef2b22f823bc19d5c21f295bb9d333b53b86a67ad75e399ff"
+    },
+    {
+      "file": "src/lib/url-state.tsx",
+      "before": null,
+      "after": "04032fbcf9712e918dee5dde38ca87963e923d515c7adcaf2fa0310a03f99c21"
+    },
+    {
+      "file": "src/providers/layout.tsx",
+      "before": "f5f3164f247e34994b18c8d6e8cb315cb9fdb3981b696e9fdffb3f69f61c3382",
+      "after": "ecc716358a3df04745de449c29dbae85484dfd7ebfec6d667c85f6ef3aa34aa5"
+    },
+    {
+      "file": "src/providers/navigation.tsx",
+      "before": "a96b3656fc451c6193f814caa30421ea7d7e97ad250842e588aa6256e7e012fa",
+      "after": "2c669d4cc2860aaa2ce69824b1c8d3d860ed9f132f9ec5e4e53e2d5302f41c9f"
+    },
+    {
+      "file": "tests/regression/menu-compat.test.tsx",
+      "before": "d06d21ef8dbb7695c3d33eaa3e9240fef10ae7a99fb32857c94410910981d625",
+      "after": "ac13add6a3b73d6b2929209b674228c3b6f2f4f159e5901586b794fb5e9bbb6c"
+    },
+    {
+      "file": "package.json",
+      "before": "d4647243ecb9d0fc2464350010a88f6f9277715ddddb1b92f67d6cdb8d777500",
+      "after": "78f22e76da6c5930ca62c5725df0299149d84e325dd9cd2d409b855d1a3c01a3"
+    },
+    {
+      "file": "AGENTS.md",
+      "before": null,
+      "after": "ab4ab26d1494ea180b61c6808ea3e8057ec26a4b6d82421e740a1b534b0bbc5f"
+    },
+    {
+      "file": "docs/url-state.md",
+      "before": null,
+      "after": "b107be5bd214064002d2651b6f31d20446db7278dd6b8c1c6d61fb9a910bebbd"
+    }
+  ],
+  "agents": [
+    {
+      "log": "nuqs-agent-audit.jsonl",
+      "session": "ses_e3557d234ffemJG3b4sh4dhRTZ",
+      "finished": true,
+      "reportedCost": 0
+    },
+    {
+      "log": "nuqs-agent-features.jsonl",
+      "session": "ses_e354ddc93ffeCXYfu9YnGQqMMb",
+      "finished": true,
+      "reportedCost": 0
+    },
+    {
+      "log": "nuqs-agent-listings.jsonl",
+      "session": "ses_e3555e324ffeepgturZfhKb11t",
+      "finished": true,
+      "reportedCost": 0
+    },
+    {
+      "log": "nuqs-agent-marketplace.jsonl",
+      "session": "ses_e3555e324ffeepgturZfhKb11t",
+      "finished": true,
+      "reportedCost": 0
+    },
+    {
+      "log": "nuqs-agent-menus.jsonl",
+      "session": "ses_e3554c504ffeuDTHqiRWkGgcD7",
+      "finished": true,
+      "reportedCost": 0
+    },
+    {
+      "log": "nuqs-agent-review.jsonl",
+      "session": "ses_e3557d234ffemJG3b4sh4dhRTZ",
+      "finished": true,
+      "reportedCost": 0
+    }
+  ],
+  "verified": "2026-11-11T13:26:17.235Z"
+}

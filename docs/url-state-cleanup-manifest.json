@@ -1,0 +1,58 @@
+{
+  "created": "2026-11-11T14:00:09.184Z",
+  "backup": ".upstream-sync/nuqs-cleanup-before.tar",
+  "changes": [
+    {
+      "file": "src/features/agent-threads/agent-thread-tabs.ts",
+      "before": "0d3a15dc9237326ac0a779821e0b01de3cd19ea82191b483762ff08e333a31f2",
+      "after": "fafcd1933b80ad024a4d11971accfcd21c172d920ee62b1f95304c76b5d66414"
+    },
+    {
+      "file": "src/features/agent-threads/agent-threads-context.tsx",
+      "before": "b0a23944629cfa962308deab3946eb8c3b6242aa4e8718122252f2f15fd4ca49",
+      "after": "f4f9005f5f624f6807c8d26fd0b581b30e18d60f8663f265589c6c958e65a3c8"
+    },
+    {
+      "file": "src/features/agents/agents-context.tsx",
+      "before": "faf87f4922960358ae31ad3c311e96727128fbbb83e7bd3bae985ccac94d1316",
+      "after": "a05428b1db3c4d1b58fde0e5a15bbb35d504fd02d766ed78e92d4414f2ba900d"
+    },
+    {
+      "file": "src/features/conversation/ConversationThread.tsx",
+      "before": "64b506252eecb122904d96b05fcfce827fa4efd65f7e4d65c8082c6e485730c6",
+      "after": "15a28d185763c916292e1b0e34f9aade7c163c197648c45075f8973573487d7e"
+    },
+    {
+      "file": "src/features/conversation/ConversationTimeline.tsx",
+      "before": "b737de63a5cb309bca9efeda1360df2d5eb594e4ad791b2b5916b3a6a6c729a6",
+      "after": "4a88d524ed95049100e0e0b4c91129b41adec54829f8a55f5c25792991e8f6b3"
+    },
+    {
+      "file": "src/lib/url-state-policy.ts",
+      "before": null,
+      "after": "db64268b6e8fe6e3397c9198a7ad47b6c62e45b9d5b6c12dfeba579dfe961950"
+    },
+    {
+      "file": "src/lib/url-state.tsx",
+      "before": "04032fbcf9712e918dee5dde38ca87963e923d515c7adcaf2fa0310a03f99c21",
+      "after": "579cb2a5678d686da428c412aa8482b870cd2d41c977d5c8136815efaa4bbd7d"
+    },
+    {
+      "file": "src/features/conversation/threads/ThreadTabs.tsx",
+      "before": "31ee493c2a0257676af9960983a801b59bb4d452596683e66959aefc8e73fd11",
+      "after": "1fb0cd510a7b0ad6471b3265ae5b4ffdff14a4ad66b0e52966a0cbc3c3329769"
+    },
+    {
+      "file": "tests/regression/menu-compat.test.tsx",
+      "before": "ac13add6a3b73d6b2929209b674228c3b6f2f4f159e5901586b794fb5e9bbb6c",
+      "after": "ea42a706d5b96dae454e6cebbf86599ab2dd3b3f3c081476ae00b57fe09eb195"
+    },
+    {
+      "file": "docs/url-state.md",
+      "before": "b107be5bd214064002d2651b6f31d20446db7278dd6b8c1c6d61fb9a910bebbd",
+      "after": "924e03af3389e7730db6f8e3d93104b537c19024a0d4f58dbbbb64d3f1a4b3f4"
+    }
+  ],
+  "tests": ".upstream-sync/nuqs-cleanup-tests.log",
+  "model": "opencode/deepseek-v4.1-flash-free#low"
+}

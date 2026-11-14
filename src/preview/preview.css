@@ -1,0 +1,94 @@
+@import "../styles.css";
+@source "../";
+
+.johnbot-playground-root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--johnbot-bg-canvas);
+}
+
+.johnbot-playground-loading {
+  width: 100%;
+  height: 100%;
+  background: var(--johnbot-bg-canvas);
+}
+
+.johnbot-playground-root .unread-messages-banner {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .johnbot-playground-root .app-frame,
+  .johnbot-playground-root .app-frame-with-server-rail {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: 68px minmax(0, 1fr);
+  }
+
+  .johnbot-playground-root .server-rail,
+  .johnbot-playground-root .left-panel-resizer,
+  .johnbot-playground-root .sidebar-topbar,
+  .johnbot-playground-root .sidebar-search-wrap,
+  .johnbot-playground-root .sidebar-list-context-trigger,
+  .johnbot-playground-root .sidebar-chat-group > header {
+    display: none;
+  }
+
+  .johnbot-playground-root .sidebar {
+    grid-column: 1;
+    grid-row: 1;
+    flex-direction: row;
+    border-inline-end: 0;
+    border-bottom: 1px solid var(--johnbot-border);
+  }
+
+  .johnbot-playground-root .agent-list,
+  .johnbot-playground-root .sidebar-compact .agent-list {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    align-items: center;
+    justify-content: center;
+    gap: var(--johnbot-space-1-5);
+    padding: var(--johnbot-space-2) var(--johnbot-space-3);
+  }
+
+  /* Every wrapper between the list and the rows becomes one row of avatars. */
+  .johnbot-playground-root .agent-list-content,
+  .johnbot-playground-root .sidebar-chat-group,
+  .johnbot-playground-root .sidebar-section-collapse,
+  .johnbot-playground-root .sidebar-section-body {
+    display: flex;
+    align-items: center;
+    gap: var(--johnbot-space-1-5);
+    margin: 0;
+  }
+
+  .johnbot-playground-root .agent-row,
+  .johnbot-playground-root .sidebar-compact .agent-row {
+    --agent-row-avatar-size: 36px;
+    --sidebar-pinned-avatar-size: 36px;
+
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
+    margin: 0;
+    padding: 6px;
+  }
+
+  .johnbot-playground-root .sidebar-compact .agent-row-avatar {
+    transform: none;
+  }
+
+  .johnbot-playground-root .agent-row-copy {
+    display: none;
+  }
+
+  /* The chat is inside the panes wrapper, which the frame puts in the first row. */
+  .johnbot-playground-root .app-frame-panes,
+  .johnbot-playground-root .conversation-panel,
+  .johnbot-playground-root .app-frame-with-server-rail .conversation-panel {
+    grid-column: 1;
+    grid-row: 2;
+  }
+}

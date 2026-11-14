@@ -1,0 +1,8 @@
+# Optional ports for running Next/Prisma on the host; omitted by normal Compose.
+services:
+  postgres:
+    ports:
+      - "127.0.0.1:${JOHNBOT_POSTGRES_PORT:-5432}:5432"
+  redis:
+    ports:
+      - "127.0.0.1:${JOHNBOT_REDIS_PORT:-6379}:6379"

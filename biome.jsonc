@@ -1,0 +1,65 @@
+{
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+  "files": {
+    "includes": ["**", "!src-tauri/**", "!.next/**", "!out/**", "!dist/**"]
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 100
+  },
+  "css": {
+    "parser": {
+      "tailwindDirectives": true
+    }
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "preset": "recommended",
+      "correctness": {
+        // Solid-style accessors use the `use` prefix but are not React hooks.
+        "useHookAtTopLevel": "off",
+        // Path aliases are resolved by Next/Turbopack, not by Biome.
+        "noUnresolvedImports": "off",
+        // The compat layer deliberately builds component factories from hooks.
+        "noComponentHookFactories": "warn",
+        // Existing effects use Solid-style dependency tracking; report, do not fail.
+        "useExhaustiveDependencies": "warn"
+      },
+      "suspicious": {
+        "noArrayIndexKey": "warn"
+      },
+      "a11y": {
+        "noNoninteractiveTabindex": "warn",
+        "noLabelWithoutControl": "warn",
+        "useSemanticElements": "warn",
+        "useAriaPropsForRole": "warn",
+        "useButtonType": "warn"
+      }
+    }
+  },
+
+  "overrides": [
+    {
+      "includes": ["src/app/**", "src/lib/url-state.tsx", "scripts/**", "tests/**"],
+      "linter": {
+        "rules": {
+          "correctness": {
+            "useHookAtTopLevel": "error"
+          }
+        }
+      }
+    }
+  ],
+
+  "assist": {
+    "enabled": false
+  }
+}

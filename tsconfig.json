@@ -1,0 +1,127 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "target": "ES2022",
+    "jsx": "preserve",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "types": [
+      "vite/client"
+    ],
+    "verbatimModuleSyntax": true,
+    "baseUrl": ".",
+    "paths": {
+      "solid-js": [
+        "./src/lib/solid-react-compat.tsx"
+      ],
+      "solid-js/web": [
+        "./src/lib/solid-web-compat.ts"
+      ],
+      "solid-js/store": [
+        "./src/lib/solid-store-compat.ts"
+      ],
+      "@solidjs/web": [
+        "./src/lib/solid-web-compat.ts"
+      ],
+      "@kobalte/core": [
+        "./src/lib/kobalte-compat.tsx"
+      ],
+      "@kobalte/core/tabs": [
+        "./src/lib/kobalte-tabs-compat.tsx"
+      ],
+      "@kobalte/core/select": [
+        "./src/lib/kobalte-select-compat.tsx"
+      ],
+      "@kobalte/core/context-menu": [
+        "./src/lib/kobalte-context-menu-compat.tsx"
+      ],
+      "@kobalte/core/tooltip": [
+        "./src/lib/kobalte-tooltip-compat.tsx"
+      ],
+      "@kobalte/core/dropdown-menu": [
+        "./src/lib/kobalte-dropdown-menu-compat.tsx"
+      ],
+      "@kobalte/core/popover": [
+        "./src/lib/kobalte-popover-compat.tsx"
+      ],
+      "@kobalte/core/*": [
+        "./src/lib/kobalte-compat.tsx"
+      ],
+      "@norbert_bodziony/bloub": [
+        "./src/lib/bloub-compat.tsx"
+      ],
+      "@/*": [
+        "./src/*"
+      ],
+      "@johnbot/features": [
+        "./src/features"
+      ],
+      "@johnbot/features/*": [
+        "./src/features/*"
+      ],
+      "@johnbot/ui": [
+        "./src/components"
+      ],
+      "@johnbot/ui/*": [
+        "./src/components/*"
+      ],
+      "@johnbot/contracts": [
+        "./src/contracts"
+      ],
+      "@johnbot/contracts/*": [
+        "./src/contracts/*"
+      ],
+      "@johnbot/brand": [
+        "./src/brand"
+      ],
+      "@johnbot/brand/*": [
+        "./src/brand/*"
+      ],
+      "@johnbot/i18n": [
+        "./src/i18n"
+      ],
+      "@johnbot/i18n/*": [
+        "./src/i18n/*"
+      ],
+      "@johnbot/logging": [
+        "./src/logging"
+      ],
+      "@johnbot/logging/*": [
+        "./src/logging/*"
+      ],
+      "@johnbot/team-client": [
+        "./src/team-client"
+      ],
+      "@johnbot/team-client/*": [
+        "./src/team-client/*"
+      ],
+      "@johnbot/telemetry": [
+        "./src/telemetry"
+      ],
+      "@johnbot/telemetry/*": [
+        "./src/telemetry/*"
+      ],
+      "@johnbot/user-errors": [
+        "./src/user-errors"
+      ],
+      "@johnbot/user-errors/*": [
+        "./src/user-errors/*"
+      ],
+      "@kobalte/core/radio-group": [
+        "./src/lib/kobalte-radio-group-compat.tsx"
+      ],
+      "@kobalte/core/switch": [
+        "./src/lib/kobalte-switch-compat.tsx"
+      ]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    ".next/types/**/*.ts"
+  ]
+}
