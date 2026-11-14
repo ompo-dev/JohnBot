@@ -57,10 +57,11 @@ jobs:
 
           Compress-Archive -Path "$portableStage/*" -DestinationPath "dist-artifacts/JohnBot-portable-windows-x64.zip" -Force
 
-          Get-ChildItem -Path dist-artifacts -File | ForEach-Object {
+          $hashes = Get-ChildItem -Path dist-artifacts -File | Where-Object { $_.Name -ne "SHA256SUMS.txt" } | ForEach-Object {
             $hash = (Get-FileHash -Path $_.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
             "$hash  $($_.Name)"
-          } | Out-File -FilePath dist-artifacts/SHA256SUMS.txt -Encoding ascii
+          }
+          $hashes | Set-Content -Path "dist-artifacts/SHA256SUMS.txt" -Encoding ascii
 
       - name: Upload Windows x64 artifacts
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
